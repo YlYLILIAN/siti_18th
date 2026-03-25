@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>✨ Solehah's 18th Birthday | Digital Keepsake ✨</title>
+    <!-- Google Fonts: Playfair Display (elegant serif) + Quicksand (modern) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #EADBC6;  /* warm beige base */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Quicksand', sans-serif;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* soft pattern texture (light linen) */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(#D6C4AC 1px, transparent 1px);
+            background-size: 28px 28px;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* main card */
+        .card {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            width: 100%;
+            background: #FFFBF5;
+            border-radius: 52px;
+            box-shadow: 0 30px 50px -20px rgba(0,0,0,0.2);
+            padding: 2rem 2rem 2.2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(230, 210, 180, 0.6);
+        }
+
+        /* headings */
+        .birthday-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.3rem;
+            font-weight: 700;
+            color: #B48C5C;
+            text-align: center;
+            letter-spacing: -0.3px;
+            margin-bottom: 0.2rem;
+        }
+        .birthday-sub {
+            text-align: center;
+            font-size: 1.25rem;
+            color: #C6AA82;
+            font-weight: 500;
+            border-bottom: 1px dashed #EADBC6;
+            display: inline-block;
+            width: auto;
+            margin: 0 auto 2rem;
+            padding-bottom: 0.4rem;
+        }
+        .sub-wrapper {
+            text-align: center;
+        }
+
+        /* TWO-COLUMN LAYOUT (left: video, right: polaroid) */
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            justify-content: center;
+        }
+        /* left video panel */
+        .video-panel {
+            flex: 1.2;
+            min-width: 280px;
+            background: rgba(245, 235, 220, 0.5);
+            border-radius: 40px;
+            padding: 1rem;
+            backdrop-filter: blur(2px);
+            box-shadow: inset 0 0 0 1px rgba(255,250,235,0.7), 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .video-container {
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 12px 24px -12px rgba(0,0,0,0.2);
+            background: #000;
+            aspect-ratio: 16 / 9;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .video-caption {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #A97C4B;
+            letter-spacing: 0.5px;
+        }
+
+        /* right polaroid panel */
+        .polaroid-panel {
+            flex: 0.9;
+            min-width: 260px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .polaroid-frame {
+            background: #FEF9EF;
+            padding: 1rem 1rem 1.6rem 1rem;
+            border-radius: 20px 20px 30px 30px;
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.2), 0 2px 6px rgba(0,0,0,0.02);
+            transform: rotate(-1deg);
+            transition: transform 0.3s ease, box-shadow 0.2s;
+            width: 100%;
+            max-width: 320px;
+            background: #FFFBF0;
+            border: 1px solid #F0E1CC;
+        }
+        .polaroid-frame:hover {
+            transform: rotate(0deg) scale(1.01);
+            box-shadow: 0 25px 35px -15px rgba(0,0,0,0.25);
+        }
+        .polaroid-img {
+            background: #F4E9DC;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .polaroid-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .polaroid-img img:hover {
+            transform: scale(1.02);
+        }
+        .polaroid-caption {
+            text-align: center;
+            margin-top: 1rem;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 500;
+            color: #B48C5C;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+        .polaroid-caption span {
+            font-family: 'Quicksand', sans-serif;
+            font-style: normal;
+            font-size: 0.85rem;
+            display: block;
+            color: #C2A074;
+        }
+
+        /* CAKE + BALLOONS row (interactive celebration) */
+        .celebration-row {
+            background: rgba(250, 242, 228, 0.6);
+            border-radius: 48px;
+            padding: 1rem 1.5rem 1.2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            gap: 1rem;
+            backdrop-filter: blur(2px);
+            border: 1px solid #F3E5D2;
+        }
+        .cake-svg-container svg, .balloons-svg-container svg {
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.08));
+            transition: transform 0.2s ease;
+        }
+        .cake-svg-container svg:hover, .balloons-svg-container svg:hover {
+            transform: translateY(-4px);
+        }
+        .balloon-group {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .cake-group {
+            cursor: pointer;
+        }
+
+        /* reveal button */
+        .reveal-message-btn {
+            background: #DDBD92;
+            border: none;
+            width: 100%;
+            padding: 16px 8px;
+            border-radius: 60px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            color: #FFF8F0;
+            cursor: pointer;
+            margin: 0.5rem 0 1.2rem;
+            transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 12px 18px -10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .reveal-message-btn:hover {
+            background: #C9A26B;
+            transform: translateY(-3px);
+            box-shadow: 0 20px 24px -12px rgba(0,0,0,0.25);
+        }
+        .reveal-message-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* message container */
+        .message-container {
+            background: #FFFBF0;
+            border-radius: 44px;
+            padding: 1.8rem 2rem;
+            border-left: 12px solid #F0DDB6;
+            box-shadow: 0 15px 30px -10px rgba(0,0,0,0.1);
+            transition: all 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transform: scaleY(0.96);
+            transform-origin: top;
+        }
+        .message-container.open {
+            max-height: 1000px;
+            opacity: 1;
+            transform: scaleY(1);
+            margin-top: 1rem;
+            overflow-y: auto;
+        }
+        .personal-message {
+            font-family: 'Quicksand', sans-serif;
+            color: #5F4A2E;
+            line-height: 1.65;
+            font-size: 1rem;
+            white-space: pre-line;
+        }
+        .personal-message p {
+            margin-bottom: 1rem;
+        }
+        .personal-message strong {
+            color: #C58F4A;
+            font-weight: 700;
+        }
+        .signature {
+            margin-top: 1rem;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            text-align: right;
+            font-weight: 500;
+            color: #B48C5C;
+        }
+
+        /* floating animation for balloons */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating-balloon {
+            animation: float 3s infinite ease-in-out;
+        }
+        @keyframes flicker {
+            0% { opacity: 0.85; transform: scaleY(1); }
+            100% { opacity: 1; transform: scaleY(1.03); }
+        }
+        .candle-flicker {
+            animation: flicker 0.9s infinite alternate;
+        }
+
+        /* responsive */
+        @media (max-width: 780px) {
+            .card { padding: 1.5rem; }
+            .birthday-title { font-size: 2.3rem; }
+            .reveal-message-btn { font-size: 1rem; padding: 12px; }
+            .two-columns { gap: 1.2rem; }
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.9; }
+            100% { transform: translateY(-90px) rotate(12deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <!-- elegant heading -->
+    <div class="birthday-title">🎂 Happy 18th Birthday 🎂</div>
+    <div class="sub-wrapper"><div class="birthday-sub">Solehah ✨</div></div>
+
+    <!-- TWO-COLUMN SECTION: LEFT VIDEO / RIGHT POLAROID (permanent) -->
+    <div class="two-columns">
+        <!-- LEFT: permanent video (mixkit sparkling birthday cake) -->
+        <div class="video-panel">
+            <div class="video-container">
+
+
+                <iframe width="600" height="340"
+                src="https://drive.google.com/file/d/1w9mptFH0HovT5GUM9wxklDiTgsGdwTyO/view?usp=drive_link"
+                frameborder="0" allowfullscreen>
+                </iframe>
+
+            <!-- 
+                <video controls width="400" height="1000">
+                <source src="IMG_0841.MP4" type="video/mp4">
+
+ 
+                
+                <!-- Fallback text for older browsers -->
+                Your browser does not support the video tag.
+                </video>
+
+            -->
+
+            </div>
+            <div class="video-caption">GAHAHAHAHA DO U STILL REMEMBER THIS</div>
+            <!--
+            <div class="video-caption">[press the 3dot and then picture-in-picture to see the uncropped video, idk why its not showing the entire screen]</div>
+            -->
+        </div>
+
+        <!-- RIGHT: polaroid frame with permanent photo of "us" (Lilian & Solehah) -->
+        <div class="polaroid-panel">
+            <div class="polaroid-frame">
+                <div class="polaroid-img">
+                    <!-- Pexels free photo of two best friends (can replace with your own image) -->
+                    <img src="ai_repair_20250323200520966.JPG" 
+                         alt="Lilian & Solehah"
+                         title="Lilian & Solehah">
+                </div>
+                <div class="polaroid-caption">
+                    🌷 lilian & solehah 🌷
+                    <span> Cuties✨</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MESSAGE REVEAL BUTTON (option clicked to show message) -->
+    <button class="reveal-message-btn" id="revealMsgBtn">
+        💌 Open Lilian's Heartfelt Letter 💌
+    </button>
+
+    <!-- MESSAGE CONTAINER (hidden until click) -->
+    <div id="messageContainer" class="message-container">
+        <div class="personal-message">
+            <p><strong>Happy Birthday dear Solehahahahhhahah~</strong> 🥳</p>
+            <p>I’m really sad I couldn’t give you a card in person this year, so I thought I’d make you a digital one instead hahaha. It might look a bit funny because yes… I used AI (I’m still not that great at coding yet lol).</p>
+            <p>I hope everything is going well at uni and that you’re not too stressed. You’re a smarty pants, so I know you’ve got this 😘</p>
+            <p>Your birthday present is still on the way, so stay excited! (You probably already know what it is, but just pretend you don’t 🥸)</p>
+            <p>And congrats on becoming legal hahaha — you’re officially not a teenager anymore (you’re old now 😌)</p>
+            <p>Even though we’re in different cities now and there’s a 3-hour time difference, you’ll always be my bestie no matter what. I really miss you, and things just aren’t the same without you around. Don’t you dare forget about me 😡 because I’m definitely never forgetting about you. No matter how busy life gets, you’ll always be super important to me 💛</p>
+            <p>It’s only been like 5 months but I already lowkey miss high school — okay, not the studying part, but everything else. I really miss all of us just being together. I’m so grateful I got to meet you guys back then, because I feel like friendships like that don’t really happen the same way again as we grow up. It sounds kinda cliché, but you really are one of the most important people in my life. You’re such a big cutieeeeeee 🥺</p>
+            <p>Last sekali, jangan lupa makan sedap-sedap hari ni dan enjoy your special day ya 😋<br>Semoga semua impian you tercapai (dan semoga you tak lupa bestie paling penting ni 😌)<br>Take care selalu, and cepat-cepat kita jumpa lagi okay!!</p>
+            <div class="signature">- Lilian 💛</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // interactive balloon & cake clicks (playful animations + mini sparkle)
+    const balloonGroups = document.querySelectorAll('.balloon-group');
+    const cakeSvgElem = document.querySelector('.cake-group');
+    
+    function createFloatingSparkle(x, y) {
+        const sparkle = document.createElement('div');
+        sparkle.innerText = ['🎈','✨','🌸','🎀','💛'][Math.floor(Math.random() * 5)];
+        sparkle.style.position = 'absolute';
+        sparkle.style.left = x + 'px';
+        sparkle.style.top = y + 'px';
+        sparkle.style.fontSize = '22px';
+        sparkle.style.pointerEvents = 'none';
+        sparkle.style.zIndex = '999';
+        sparkle.style.animation = 'floatUp 0.9s ease-out forwards';
+        document.body.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 900);
+    }
+    
+    if (cakeSvgElem) {
+        cakeSvgElem.addEventListener('click', (e) => {
+            e.stopPropagation();
+            cakeSvgElem.style.transform = 'scale(1.02)';
+            setTimeout(() => cakeSvgElem.style.transform = '', 200);
+            const rect = cakeSvgElem.getBoundingClientRect();
+            createFloatingSparkle(rect.left + rect.width/2, rect.top + 40);
+            // extra candle flicker
+            const flame = document.querySelector('.candle-flicker');
+            if(flame) flame.style.transform = 'scale(1.2)';
+            setTimeout(() => { if(flame) flame.style.transform = ''; }, 200);
+        });
+    }
+    
+    balloonGroups.forEach(balloon => {
+        balloon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            balloon.style.transform = 'translateY(-12px) scale(1.06)';
+            setTimeout(() => balloon.style.transform = '', 250);
+            const rect = balloon.getBoundingClientRect();
+            createFloatingSparkle(rect.left + rect.width/2, rect.top + 20);
+        });
+    });
+    
+    // reveal message with confetti-like celebration and open animation
+    const revealBtn = document.getElementById('revealMsgBtn');
+    const messageDiv = document.getElementById('messageContainer');
+    
+    revealBtn.addEventListener('click', () => {
+        if (!messageDiv.classList.contains('open')) {
+            messageDiv.classList.add('open');
+            // additional joyful particles & style
+            revealBtn.innerHTML = '💖 Message opened with love 💖';
+            revealBtn.style.background = "#C9A26B";
+            // floating celebratory icons
+            for (let i = 0; i < 24; i++) {
+                const icon = document.createElement('div');
+                icon.innerText = ['✨','🎂','💌','🎈','🌸','💛'][Math.floor(Math.random() * 6)];
+                icon.style.position = 'absolute';
+                icon.style.left = Math.random() * 85 + 5 + '%';
+                icon.style.top = '75%';
+                icon.style.fontSize = `${Math.random() * 20 + 14}px`;
+                icon.style.pointerEvents = 'none';
+                icon.style.opacity = '0.9';
+                icon.style.zIndex = '20';
+                icon.style.animation = 'floatUp 1.5s ease-out forwards';
+                document.querySelector('.card').appendChild(icon);
+                setTimeout(() => icon.remove(), 1500);
+            }
+        } else {
+            // if already open, just add extra floating hearts (no harm)
+            for (let i = 0; i < 12; i++) {
+                const heart = document.createElement('div');
+                heart.innerText = '💛';
+                heart.style.position = 'absolute';
+                heart.style.left = Math.random() * 90 + '%';
+                heart.style.top = '70%';
+                heart.style.fontSize = '18px';
+                heart.style.animation = 'floatUp 1.2s ease-out forwards';
+                heart.style.pointerEvents = 'none';
+                document.querySelector('.card').appendChild(heart);
+                setTimeout(() => heart.remove(), 1200);
+            }
+        }
+    });
+    
+    // initial floating animation for balloons
+    document.querySelectorAll('.balloon-group').forEach(b => {
+        b.style.animation = 'float 3s infinite ease-in-out';
+    });
+    
+    // add keyframes if missing
+    if (!document.querySelector('#dynamicKeyframe')) {
+        const styleSheet = document.createElement("style");
+        styleSheet.id = "dynamicKeyframe";
+        styleSheet.textContent = `@keyframes floatUp { 0% { transform: translateY(0) rotate(0deg); opacity: 0.9; } 100% { transform: translateY(-100px) rotate(12deg); opacity: 0; } }`;
+        document.head.appendChild(styleSheet);
+    }
+    
+    // small interactive note: video will autoplay muted loop as desired, permanent & no upload
+    console.log("✨ Happy 18th Birthday Solehah! Cherish every moment ✨");
+</script>
+</body>
+</html>
